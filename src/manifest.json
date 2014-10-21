@@ -3,7 +3,7 @@
   "short_name": "Toggl Button for Custom Websites",
   "version": "0.4.4",
   "manifest_version": 2,
-  "description": "All the convenience of the official Toggl plugin, with the added benefit of custom websites.",
+  "description": "All the convenience of the official Toggl extension, with the added benefit of custom websites.",
   "background": {
     "scripts": [
       "scripts/background.js"

@@ -2,7 +2,7 @@
 
 *__Disclaimer:__ This is not the official Toggl Button extension. This is a modified version that gives you the ability to put the Toggl button on private and less popular website domains.*
 
-All the convenience of the [official Toggl plugin][96], with the added benefit of custom websites. To be clear, this extension is still limited to the services listed below. What it does allow is the usage of any of those services on any web domain that is hosting them. For example, if you have a private installation of [Trac][25], you will be able to use the Toggl button on http://trac.yourwebsite.com just as easily as you would on http://trac.wordpress.org.
+All the convenience of the [official Toggl extension][96], with the added benefit of custom websites. To be clear, this extension is still limited to the services listed below. What it does allow is the usage of any of those services on any web domain that is hosting them. For example, if you have a private installation of [Trac][25], you will be able to use the Toggl button on http://trac.yourwebsite.com just as easily as you would on http://trac.wordpress.org.
 
 ## Compatible services
   - [TeamWeek][2]
