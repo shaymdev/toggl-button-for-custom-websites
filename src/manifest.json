@@ -1,9 +1,9 @@
 {
-  "name": "Toggl Button",
-  "short_name": "Toggl Button",
+  "name": "Toggl Button for Custom Websites",
+  "short_name": "Toggl Button for Custom Websites",
   "version": "0.4.4",
   "manifest_version": 2,
-  "description": "Add Official Toggl Online Timer to Popular Web Tools",
+  "description": "All the convenience of the official Toggl plugin, with the added benefit of custom websites.",
   "background": {
     "scripts": [
       "scripts/background.js"
