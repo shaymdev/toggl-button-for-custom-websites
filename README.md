@@ -1,8 +1,15 @@
 # Toggl Button for Custom Websites Chrome extension
 
-*__Disclaimer:__ This is not the official Toggl Button extension. This is a modified version that gives you the ability to put the Toggl button on private and less popular website domains.*
+-----
 
-All the convenience of the [official "Toggl Button" extension][96], with the added benefit of custom websites. To be clear, this extension is still limited to the services listed below. What it does allow is the usage of any of those services on any web domain that is hosting them. For example, if you have a private installation of [Trac][25], you will be able to use the Toggl button on http://trac.yourwebsite.com just as easily as you would on http://trac.wordpress.org.
+*__Disclaimer:__ This is not the official "Toggl Button" extension, though it is based off of the original with permission from the Toggl team**.
+
+-----
+
+__All the convenience of the [official "Toggl Button" extension][96], with the added benefit of custom websites.__
+
+Does your company use a private Trac installation for work requests? Or maybe you frequently report bugs for a niche website using their Redmine instance? 
+Based on the popular "Toggl Button" Chrome extension, this modified version will allow you to integrate Toggl into any website you want, as long as it is running one of these supported services:
 
 ## Compatible services
   - [TeamWeek][2]
@@ -34,7 +41,7 @@ All the convenience of the [official "Toggl Button" extension][96], with the add
 
 ## Installing from the Web Store
 
-(Chrome Web Store URL TBD)
+https://chrome.google.com/webstore/detail/toggl-button-for-custom-w/cblhgnnnpnonkonnfcfkfhhkoldjpdno
 
 ## Installing from Source
 
@@ -58,9 +65,12 @@ All the convenience of the [official "Toggl Button" extension][96], with the add
 If you use a setup where one of the supported services is on a custom domain, you can customize the extension to fit your needs. This is where this unofficial version really shines. Just go to the extension's Settings page, check the option for "Custom websites", and add your custom domain to the list by clicking "+ Add new custom website" at the bottom of the list. You can also remove existing domains from the list if you do not use Toggl on those websites. Why waste precious time loading JavaScript you won't use?
 
 ## Contributing
-Want to contribute? Great! Just fork the project, make your changes and open a [Pull Request][99]
+Want to contribute? Great!
 
-Don't know how to start? Just check out the [user requested services][97] that have not yet been implemented, pick one and start hacking.
+If you'd like to make a change related to the custom websites feature, just fork this project, make your changes and open a [Pull Request][98].
+If you'd like to make a change related to another feature, you should fork the [original "Toggl Button" repository][96], open a [Pull Request][99] there, and let me catch the changes downstream.
+
+*Permission from the Toggl team to branch their extension can be viewed at: https://github.com/toggl/toggl-button/pull/127#issuecomment-59708435.
 
 [1]: https://www.toggl.com/
 [2]: https://teamweek.com/
@@ -90,5 +100,5 @@ Don't know how to start? Just check out the [user requested services][97] that h
 [26]: https://www.wunderlist.com
 [27]: https://www.toodledo.com/
 [96]: https://github.com/toggl/toggl-button
-[97]: https://github.com/toggl/toggl-button/wiki/User-requested-buttons
+[98]: https://github.com/sfarbota/toggl-button/pulls
 [99]: https://github.com/toggl/toggl-button/pulls
