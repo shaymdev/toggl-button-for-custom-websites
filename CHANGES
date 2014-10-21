@@ -1,3 +1,11 @@
+[0.4.4]
+- Added support for Toodledo
+- Fixed toggl-button's location for Teamweek's new design
+- Post start popup is always fully visible
+- Post start popup form style fixes
+[0.4.3]
+- Added "Remind me to track" setting
+- Added tags selection to post start popup
 [0.4.2]
 - Added support for Wunderlist
 - Added support for Trac
@@ -5,7 +13,6 @@
 - Improved icons
 - Added Settings view
 - Position and z-index fix for post start popup
-
 [0.4.1]
 - Fixed packaging issue
 [0.4.0]

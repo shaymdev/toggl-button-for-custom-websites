@@ -28,7 +28,6 @@ only screen and (min-resolution: 192dpi) {
 #toggl-button-edit-form {
   position: absolute;
   width: 240px !important;
-  height: 240px;
   padding: 10px !important;
   -webkit-box-shadow: 0 1px 3px rgba(128,128,128,.5);
   -moz-box-shadow: 0 1px 3px rgba(128,128,128,.5);
@@ -61,22 +60,24 @@ p.toggl-button-row.first {
   margin-top: 0;
   margin-bottom: 0;
 }
-.toggl-button-input {
+#toggl-button-description, #toggl-button-project {
+  height: 35px !important;
+}
+#toggl-button-description, #toggl-button-project, #toggl-button-tag {
+  font-size: 13px !important;
+  margin: 0 !important;
+  padding: 0 10px !important;
+  width: 100% !important;
   background: #f5f5f5;
   border: 1px solid #e1e1e1;
   font-size: 0.7em;  
   padding: 5px;
   width: 220px;
+  box-sizing: border-box;
 }
-#toggl-button-description, #toggl-button-project {
-  height: 35px !important;
-  font-size: 13px !important;
-  margin: 0 !important;
-  padding: 0 10px !important;
-  width: 220px !important;
-}
-#toggl-button-project {
-  width: 100% !important;
+
+#toggl-button-tag {
+  height: 65px !important;
 }
 
 #toggl-button-hide, #toggl-button-update {
@@ -109,13 +110,6 @@ p.toggl-button-row.first {
 }
 #toggl-button-update {
   float: right;
-}
-#toggl-button-submit-row {
-  position:absolute;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
-  margin: 0 !important;
 }
 
 /********* PIVOTAL *********/
@@ -209,6 +203,12 @@ p.toggl-button-row.first {
   color: rgba(47,47,47,0.8);
   margin: 12px;
   margin-top: 18px;
+  position: absolute;
+  z-index: 9999999;
+}
+
+#toggl-button-edit-form .toggl-button.teamweek-new {
+  position: static;
 }
 
 /********* PRODUCTEEV *********/
@@ -455,4 +455,15 @@ p.toggl-button-row.first {
 
 #wordpress-org #content .toggl-button.trac.active:hover {
   border-color: rgb(22, 148, 67);
+}
+
+/****** Toodledo *********/
+.toggl-button.toodledo {
+  margin-top: -3px;
+  position: absolute;
+  margin-left: 5px;
+}
+
+#toggl-button-edit-form .toggl-button.toodledo {
+  position: static;
 }

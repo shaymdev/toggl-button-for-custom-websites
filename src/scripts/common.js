@@ -1,5 +1,5 @@
 /*jslint indent: 2, unparam: true*/
-/*global document: false, MutationObserver: false, chrome: false*/
+/*global document: false, MutationObserver: false, chrome: false, window: false*/
 "use strict";
 
 function $(s, elem) {
@@ -69,12 +69,31 @@ var togglbutton = {
     }
   },
 
+  getSelectedTags: function () {
+    var tags = [],
+      tag,
+      i,
+      s = document.getElementById("toggl-button-tag");
+    for (i = 0; i < s.options.length; i += 1) {
+      if (s.options[i].selected === true) {
+        tag = s.options[i].value;
+        tags.push(tag);
+      }
+    }
+    return tags;
+  },
+
   addEditForm: function (response) {
     if (response === null || !response.showPostPopup) {
       return;
     }
     var pid = (!!response.entry.pid) ? response.entry.pid : 0,
       handler,
+      left,
+      top,
+      editFormHeight = 350,
+      editFormWidth = 240,
+      submitForm,
       elemRect,
       div = document.createElement('div'),
       editForm;
@@ -84,6 +103,7 @@ var togglbutton = {
     if (editForm !== null) {
       $("#toggl-button-description").value = response.entry.description;
       $("#toggl-button-project").value = pid;
+      $("#toggl-button-tag").value = "";
       editForm.style.left = (elemRect.left - 10) + "px";
       editForm.style.top = (elemRect.top - 10) + "px";
       editForm.style.display = "block";
@@ -92,9 +112,16 @@ var togglbutton = {
 
     div.innerHTML = response.html.replace("{service}", togglbutton.serviceName);
     editForm = div.firstChild;
-
-    editForm.style.left = (elemRect.left - 10) + "px";
-    editForm.style.top = (elemRect.top - 10) + "px";
+    left = (elemRect.left - 10);
+    top = (elemRect.top - 10);
+    if (left + editFormWidth > window.innerWidth) {
+      left = window.innerWidth - 10 - editFormWidth;
+    }
+    if (top + editFormHeight > window.innerHeight) {
+      top = window.innerHeight - 10 - editFormHeight;
+    }
+    editForm.style.left = left + "px";
+    editForm.style.top = top + "px";
     document.body.appendChild(editForm);
 
     handler = function (e) {
@@ -102,6 +129,18 @@ var togglbutton = {
         editForm.style.display = "none";
         this.removeEventListener("click", handler);
       }
+    };
+
+    submitForm = function () {
+      var request = {
+        type: "update",
+        description: $("#toggl-button-description").value,
+        pid: $("#toggl-button-project").value,
+        tags: togglbutton.getSelectedTags()
+      };
+      chrome.extension.sendMessage(request);
+      editForm.style.display = "none";
+      this.removeEventListener("click", handler);
     };
 
     $("#toggl-button-description", editForm).value = response.entry.description;
@@ -112,14 +151,11 @@ var togglbutton = {
     });
 
     $("#toggl-button-update", editForm).addEventListener('click', function (e) {
-      var request = {
-        type: "update",
-        description: $("#toggl-button-description").value,
-        pid: $("#toggl-button-project").value
-      };
-      chrome.extension.sendMessage(request);
-      editForm.style.display = "none";
-      this.removeEventListener("click", handler);
+      submitForm();
+    });
+
+    $("form", editForm).addEventListener('submit', function (e) {
+      submitForm();
     });
 
     $(".toggl-button", editForm).addEventListener('click', function (e) {
@@ -180,6 +216,7 @@ var togglbutton = {
           respond: true,
           projectId: invokeIfFunction(params.projectId),
           description: invokeIfFunction(params.description),
+          tags: invokeIfFunction(params.tags),
           projectName: invokeIfFunction(params.projectName),
           createdWith: 'TogglButton - ' + params.className
         };

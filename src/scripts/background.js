@@ -14,11 +14,12 @@ var TogglButton = {
   $socketEnabled: false,
   $timer: null,
   $idleCheckEnabled: false,
-  $idleInterval: 15000,
+  $idleInterval: 360000,
   $idleFromTo: "09:00-17:00",
   $customWebsitesEnabled: false,
   $customWebsites: null,
   $editForm: '<div id="toggl-button-edit-form">' +
+      '<form>' +
       '<a class="toggl-button {service} active" href="#">Stop timer</a>' +
       '<p class="toggl-button-row">' +
         '<label for="toggl-button-description">Description:</label>' +
@@ -28,10 +29,15 @@ var TogglButton = {
         '<label for="toggl-button-project">Project:</label>' +
         '<select class="toggl-button-input" id="toggl-button-project" name="toggl-button-project">{projects}</select>' +
       '</p>' +
+      '<p class="toggl-button-row">' +
+        '<label for="toggl-button-tag">Tags:</label>' +
+        '<select class="toggl-button-input" id="toggl-button-tag" name="toggl-button-tag" multiple>{tags}</select>' +
+      '</p>' +
       '<p id="toggl-button-submit-row">' +
         '<input type="button" value="Cancel" id="toggl-button-hide">' +
         '<input type="button" value="Update" id="toggl-button-update">' +
       '</p>' +
+      '</from>' +
     '</div>',
   $defaultWebsites: [{
       'url': 'web.any.do',
@@ -215,12 +221,17 @@ var TogglButton = {
       token: token || ' ',
       baseUrl: apiUrl,
       onLoad: function (xhr) {
-        var resp, apiToken, projectMap = {};
+        var resp, apiToken, projectMap = {}, tagMap = {};
         if (xhr.status === 200) {
           resp = JSON.parse(xhr.responseText);
           if (resp.data.projects) {
             resp.data.projects.forEach(function (project) {
               projectMap[project.name] = project;
+            });
+          }
+          if (resp.data.tags) {
+            resp.data.tags.forEach(function (tag) {
+              tagMap[tag.name] = tag;
             });
           }
           if (resp.data.time_entries) {
@@ -235,6 +246,7 @@ var TogglButton = {
           }
           TogglButton.$user = resp.data;
           TogglButton.$user.projectMap = projectMap;
+          TogglButton.$user.tagMap = tagMap;
           localStorage.removeItem('userToken');
           localStorage.setItem('userToken', resp.data.api_token);
           if (TogglButton.$sendResponse !== null) {
@@ -335,6 +347,7 @@ var TogglButton = {
           description: timeEntry.description,
           wid: TogglButton.$user.default_wid,
           pid: timeEntry.projectId || null,
+          tags: timeEntry.tags || null,
           billable: timeEntry.billable || false,
           duration: -(start.getTime() / 1000),
           created_with: timeEntry.createdWith || 'TogglButton'
@@ -401,7 +414,7 @@ var TogglButton = {
       },
       onLoad: function (xhr) {
         if (xhr.status === 200) {
-          TogglButton.$curEntry = null;
+          TogglButton.$timer = TogglButton.$curEntry = null;
           TogglButton.setBrowserAction(null);
           if (!!timeEntry.respond) {
             sendResponse({success: true, type: "Stop"});
@@ -423,7 +436,8 @@ var TogglButton = {
       payload: {
         time_entry: {
           description: timeEntry.description,
-          pid: timeEntry.pid
+          pid: timeEntry.pid,
+          tags: timeEntry.tags
         }
       },
       onLoad: function (xhr) {
@@ -499,7 +513,9 @@ var TogglButton = {
     if (TogglButton.$user === null) {
       return "";
     }
-    return TogglButton.$editForm.replace("{projects}", TogglButton.fillProjects());
+    return TogglButton.$editForm
+        .replace("{projects}", TogglButton.fillProjects())
+        .replace("{tags}", TogglButton.fillTags());
   },
 
   fillProjects: function () {
@@ -509,6 +525,19 @@ var TogglButton = {
     for (key in projects) {
       if (projects.hasOwnProperty(key)) {
         html += "<option value='" + projects[key].id + "'>" + key + "</option>";
+      }
+    }
+    return html;
+  },
+
+  fillTags: function () {
+    var html = "",
+      tags = TogglButton.$user.tagMap,
+      key = null;
+
+    for (key in tags) {
+      if (tags.hasOwnProperty(key)) {
+        html += "<option value='" + tags[key].name + "'>" + key + "</option>";
       }
     }
     return html;
@@ -543,7 +572,7 @@ var TogglButton = {
   setNanny: function (state) {
     localStorage.setItem("idleCheckEnabled", state);
     TogglButton.$idleCheckEnabled = state;
-    if (state === "true") {
+    if (state) {
       TogglButton.triggerNotification();
     }
   },
@@ -551,11 +580,17 @@ var TogglButton = {
   setNannyFromTo: function (state) {
     localStorage.setItem("idleFromTo", state);
     TogglButton.$idleFromTo = state;
+    if (TogglButton.$idleCheckEnabled) {
+      TogglButton.triggerNotification();
+    }
   },
 
   setNannyInterval: function (state) {
     localStorage.setItem("idleInterval", Math.max(state, 1000));
     TogglButton.$idleInterval = state;
+    if (TogglButton.$idleCheckEnabled) {
+      TogglButton.triggerNotification();
+    }
   },
 
   checkState: function () {
@@ -604,9 +639,19 @@ var TogglButton = {
   },
 
   triggerNotification: function () {
-    if (TogglButton.$timer === null) {
+    if (TogglButton.$timer === null && TogglButton.$curEntry === null) {
+      TogglButton.hideNotification();
       TogglButton.$timer = setTimeout(TogglButton.checkState, TogglButton.$idleInterval);
     }
+  },
+
+  hideNotification: function () {
+    chrome.notifications.clear(
+      'remind-to-track-time',
+      function () {
+        return;
+      }
+    );
   },
 
   newMessage: function (request, sender, sendResponse) {
@@ -620,6 +665,7 @@ var TogglButton = {
       TogglButton.logoutUser(sendResponse);
     } else if (request.type === 'timeEntry') {
       TogglButton.createTimeEntry(request, sendResponse);
+      TogglButton.hideNotification();
     } else if (request.type === 'update') {
       TogglButton.updateTimeEntry(request, sendResponse);
     } else if (request.type === 'stop') {
@@ -664,10 +710,11 @@ TogglButton.fetchUser(TogglButton.$apiUrl);
 TogglButton.$showPostPopup = (localStorage.getItem("showPostPopup") === null) ? true : localStorage.getItem("showPostPopup") === "true";
 TogglButton.$socketEnabled = localStorage.getItem("socketEnabled") === "true";
 TogglButton.$idleCheckEnabled = localStorage.getItem("idleCheckEnabled") === "true";
-TogglButton.$idleInterval = !!localStorage.getItem("idleInterval") ? localStorage.getItem("idleInterval") : 15000;
-TogglButton.$idleFromTo = !!localStorage.getItem("idleFromTo") ? localStorage.getItem("idleFromTo") : "09:00-17:00";
+TogglButton.$idleInterval = (localStorage.getItem("idleInterval") === "true") ? localStorage.getItem("idleInterval") : 360000;
+TogglButton.$idleFromTo = (localStorage.getItem("idleFromTo") === "true") ? localStorage.getItem("idleFromTo") : "09:00-17:00";
 TogglButton.$customWebsitesEnabled = localStorage.getItem("customWebsitesEnabled") === "true";
 TogglButton.triggerNotification();
 chrome.tabs.onUpdated.addListener(TogglButton.checkUrl);
 chrome.extension.onMessage.addListener(TogglButton.newMessage);
 chrome.notifications.onClosed.addListener(TogglButton.triggerNotification);
+chrome.notifications.onClicked.addListener(TogglButton.triggerNotification);
