@@ -70,7 +70,7 @@ Want to contribute? Great!
 If you'd like to make a change related to the custom websites feature, just fork this project, make your changes and open a [Pull Request][98].
 If you'd like to make a change related to another feature, you should fork the [original "Toggl Button" repository][96], open a [Pull Request][99] there, and let me catch the changes downstream.
 
-*Permission from the Toggl team to branch their extension can be viewed at: https://github.com/toggl/toggl-button/pull/127#issuecomment-59708435.
+*Permission from the Toggl team to fork their extension can be viewed at: https://github.com/toggl/toggl-button/pull/127#issuecomment-59708435.
 
 [1]: https://www.toggl.com/
 [2]: https://teamweek.com/
