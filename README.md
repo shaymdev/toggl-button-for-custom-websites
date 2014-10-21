@@ -2,27 +2,27 @@
 
 *__Disclaimer:__ This is not the official Toggl Button extension. This is a modified version that gives you the ability to put the Toggl button on private and less popular website domains.*
 
-All the convenience of the [official Toggl extension][96], with the added benefit of custom websites. To be clear, this extension is still limited to the services listed below. What it does allow is the usage of any of those services on any web domain that is hosting them. For example, if you have a private installation of [Trac][25], you will be able to use the Toggl button on http://trac.yourwebsite.com just as easily as you would on http://trac.wordpress.org.
+All the convenience of the [official "Toggl Button" extension][96], with the added benefit of custom websites. To be clear, this extension is still limited to the services listed below. What it does allow is the usage of any of those services on any web domain that is hosting them. For example, if you have a private installation of [Trac][25], you will be able to use the Toggl button on http://trac.yourwebsite.com just as easily as you would on http://trac.wordpress.org.
 
 ## Compatible services
   - [TeamWeek][2]
-  - [Pivotal tracker][3]
-  - [Github][4]
+  - [Pivotal Tracker][3]
+  - [GitHub][4]
   - [Asana][5]
   - [Unfuddle][6]
-  - [Gitlab][7]
+  - [GitLab][7]
   - [Trello][8]
   - [Worksection][9]
   - [Redbooth (old UI)][10]
   - [Podio][11]
   - [Basecamp][12]
-  - [JIRA (InCloud)][13]
+  - [JIRA][13]
   - [Producteev][14]
   - [Bitbucket][15]
   - [Sifter][16]
   - [Google Docs][17]
   - [Redmine][18]
-  - [YouTrack (InCloud)][19]
+  - [YouTrack][19]
   - [CapsuleCRM][20]
   - [Xero][21]
   - [Zendesk][22]
