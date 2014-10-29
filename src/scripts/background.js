@@ -16,6 +16,7 @@ var TogglButton = {
   $idleCheckEnabled: false,
   $idleInterval: 360000,
   $idleFromTo: "09:00-17:00",
+  $lastSyncDate: null,
   $customWebsitesEnabled: false,
   $customWebsites: null,
   $editForm: '<div id="toggl-button-edit-form">' +
@@ -223,7 +224,11 @@ var TogglButton = {
       onLoad: function (xhr) {
         var resp, apiToken, projectMap = {}, tagMap = {};
         if (xhr.status === 200) {
+          chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+            chrome.tabs.sendMessage(tabs[0].id, {type: "sync"});
+          });
           resp = JSON.parse(xhr.responseText);
+          TogglButton.$curEntry = null;
           if (resp.data.projects) {
             resp.data.projects.forEach(function (project) {
               projectMap[project.name] = project;
@@ -483,6 +488,10 @@ var TogglButton = {
     });
   },
 
+  syncUser: function () {
+    TogglButton.fetchUser(TogglButton.$newApiUrl);
+  },
+
   loginUser: function (request, sendResponse) {
     TogglButton.ajax("/sessions", {
       method: 'POST',
@@ -503,6 +512,7 @@ var TogglButton = {
       method: 'DELETE',
       onLoad: function (xhr) {
         TogglButton.$user = null;
+        TogglButton.$curEntry = null;
         sendResponse({success: (xhr.status === 200), xhr: xhr});
         TogglButton.refreshPage();
       }
@@ -662,8 +672,18 @@ var TogglButton = {
     );
   },
 
+  checkSync: function () {
+    var d = new Date(),
+      currentDate = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
+    if (TogglButton.$lastSyncDate === null || TogglButton.$lastSyncDate !== currentDate) {
+      TogglButton.syncUser();
+      TogglButton.$lastSyncDate = currentDate;
+    }
+  },
+
   newMessage: function (request, sender, sendResponse) {
     if (request.type === 'activate') {
+      TogglButton.checkSync();
       TogglButton.setBrowserActionBadge();
       sendResponse({success: TogglButton.$user !== null, user: TogglButton.$user});
       TogglButton.triggerNotification();
@@ -671,6 +691,8 @@ var TogglButton = {
       TogglButton.loginUser(request, sendResponse);
     } else if (request.type === 'logout') {
       TogglButton.logoutUser(sendResponse);
+    } else if (request.type === 'sync') {
+      TogglButton.syncUser();
     } else if (request.type === 'timeEntry') {
       TogglButton.createTimeEntry(request, sendResponse);
       TogglButton.hideNotification();

@@ -3,6 +3,9 @@ NOTE:
   - Releases with four-part version numbers contain changes that only apply to the Toggl Button for Custom Websites extension.
 
 
+[0.4.5]
+- Added dayly automatic sync
+- Added sync menu item
 [0.4.4.1]
 - Resolved issue that required users to view the Settings page every time the extension restarts.
 [0.4.4]
