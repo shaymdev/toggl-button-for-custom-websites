@@ -45,7 +45,7 @@ https://chrome.google.com/webstore/detail/toggl-button-for-custom-w/cblhgnnnpnon
 
 ## Installing from Source
 
-1.  Clone the repository: `git clone git://github.com/sfarbota/toggl-button/tree/custom-websites`
+1.  Clone the repository: `git clone git://github.com/sfarbota/toggl-button-for-custom-websites`
 2.  Navigate to `chrome://extensions/` and enable "Developer Mode".
 3.  Choose "Load unpacked extension..."
 4.  Open the src directory in the toggl-button directory you just cloned and follow the prompts to install.
@@ -102,5 +102,5 @@ If you'd like to make a change related to another feature, you should fork the [
 [26]: https://www.wunderlist.com
 [27]: https://www.toodledo.com/
 [96]: https://github.com/toggl/toggl-button
-[98]: https://github.com/sfarbota/toggl-button/pulls
+[98]: https://github.com/sfarbota/toggl-button-for-custom-websites/pulls
 [99]: https://github.com/toggl/toggl-button/pulls
