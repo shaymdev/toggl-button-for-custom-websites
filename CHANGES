@@ -2,6 +2,9 @@ NOTE:
   - Releases with three-part version numbers contain changes from the official Toggl Button extension.
   - Releases with four-part version numbers contain changes that only apply to the Toggl Button for Custom Websites extension.
 
+
+[0.4.4.1]
+- Resolved issue that required users to view the Settings page every time the extension restarts.
 [0.4.4]
 - Added support for Toodledo
 - Fixed toggl-button's location for Teamweek's new design
@@ -11,7 +14,7 @@ NOTE:
 - Added "Remind me to track" setting
 - Added tags selection to post start popup
 [0.4.2.1]
-- Add custom websites functionality
+- Added custom websites functionality
 [0.4.2]
 - Added support for Wunderlist
 - Added support for Trac
