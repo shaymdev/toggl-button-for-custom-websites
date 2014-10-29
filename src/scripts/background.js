@@ -569,6 +569,14 @@ var TogglButton = {
     TogglButton.$customWebsites = customWebsites;
   },
 
+  setCustomWebsitesCheckbox: function (state) {
+    localStorage.setItem("customWebsitesEnabled", state);
+    TogglButton.$customWebsitesEnabled = state;
+    if (state) {
+      TogglButton.triggerNotification();
+    }
+  },
+
   setNanny: function (state) {
     localStorage.setItem("idleCheckEnabled", state);
     TogglButton.$idleCheckEnabled = state;
@@ -682,8 +690,7 @@ var TogglButton = {
     } else if (request.type === 'toggle-nanny-interval') {
       TogglButton.setNannyInterval(request.state);
     } else if (request.type === 'toggle-custom-websites') {
-      localStorage.setItem("customWebsitesEnabled", request.state);
-      TogglButton.$customWebsitesEnabled = request.state;
+      TogglButton.setCustomWebsitesCheckbox(request.state);
     } else if (request.type === 'set-custom-website') {
       var customWebsites = TogglButton.$customWebsites.slice();
       customWebsites[request.index] = request.value;
@@ -713,6 +720,7 @@ TogglButton.$idleCheckEnabled = localStorage.getItem("idleCheckEnabled") === "tr
 TogglButton.$idleInterval = (localStorage.getItem("idleInterval") === "true") ? localStorage.getItem("idleInterval") : 360000;
 TogglButton.$idleFromTo = (localStorage.getItem("idleFromTo") === "true") ? localStorage.getItem("idleFromTo") : "09:00-17:00";
 TogglButton.$customWebsitesEnabled = localStorage.getItem("customWebsitesEnabled") === "true";
+TogglButton.$customWebsites = JSON.parse(localStorage.getItem("customWebsites"));
 TogglButton.triggerNotification();
 chrome.tabs.onUpdated.addListener(TogglButton.checkUrl);
 chrome.extension.onMessage.addListener(TogglButton.newMessage);
