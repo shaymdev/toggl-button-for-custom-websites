@@ -4,7 +4,21 @@ NOTE:
 
 
 [0.6.8.1]
+- Added Axosoft to list of custom apps
+- Added Drupal to list of custom apps
+- Added esa to list of custom apps
+- Added Flow to list of custom apps
+- Added Gemini to list of custom apps
+- Added Google Calendar to list of custom apps
+- Added Google Mail to list of custom apps
+- Added HabitRPG to list of custom apps
+- Added Help Scout to list of custom apps
 - Added JIRA to list of custom apps
+- Added Sprintly to list of custom apps
+- Added Taiga to list of custom apps
+- Added Teamwork to list of custom apps
+- Added TestRail to list of custom apps
+- Added Xero to list of custom apps
 [0.6.8]
 - Fixed Google Calendar description issue
 - Fixed http and https url support

@@ -49,6 +49,9 @@ var TogglButton = {
       'url': 'asana.com',
       'app': 'Asana'
     }, {
+      'url': 'axosoft.com',
+      'app': 'Axosoft'
+    }, {
       'url': 'basecamp.com',
       'app': 'Basecamp'
     }, {
@@ -58,17 +61,47 @@ var TogglButton = {
       'url': 'capsulecrm.com',
       'app': 'Capsule'
     }, {
+      'url': 'drupal.org',
+      'app': 'Drupal'
+    }, {
+      'url': 'esa.io',
+      'app': 'esa'
+    }, {
+      'url': 'getflow.com',
+      'app': 'Flow'
+    }, {
+      'url': 'ongemini.com',
+      'app': 'Gemini'
+    }, {
       'url': 'github.com',
       'app': 'GitHub'
     }, {
       'url': 'gitlab.com',
       'app': 'GitLab'
     }, {
-      'url': 'docs.google.com',
-      'app': 'GoogleDrive'
+      'url': 'google.com/calendar',
+      'app': 'GoogleCalendar'
     }, {
-      'url': 'drive.google.com',
-      'app': 'GoogleDrive'
+      'url': 'docs.google.com',
+      'app': 'GoogleDocs'
+    }, {
+      'url': 'mail.google.com',
+      'app': 'GoogleMail'
+    }, {
+      'url': 'habitrpg.com',
+      'app': 'HabitRPG'
+    }, {
+      'url': 'secure.helpscout.net',
+      'app': 'HelpScout'
+    }, {
+      'url': 'atlassian.com',
+      'app': 'JIRA'
+    }, {
+      'url': 'atlassian.net',
+      'app': 'JIRA'
+    }, {
+      'url': 'jira.com',
+      'app': 'JIRA'
     }, {
       'url': 'pivotaltracker.com',
       'app': 'PivotalTracker'
@@ -88,8 +121,26 @@ var TogglButton = {
       'url': 'sifterapp.com',
       'app': 'Sifter'
     }, {
+      'url': 'sprint.ly',
+      'app': 'Sprintly'
+    }, {
+      'url': 'taiga.io',
+      'app': 'Taiga'
+    }, {
       'url': 'teamweek.com',
       'app': 'Teamweek'
+    }, {
+      'url': 'teamwork.com',
+      'app': 'Teamwork'
+    }, {
+      'url': 'teamworkpm.net',
+      'app': 'Teamwork'
+    }, {
+      'url': 'testrail.com',
+      'app': 'TestRail'
+    }, {
+      'url': 'testrail.net',
+      'app': 'TestRail'
     }, {
       'url': 'todoist.com',
       'app': 'Todoist'
@@ -117,6 +168,9 @@ var TogglButton = {
     }, {
       'url': 'wunderlist.com',
       'app': 'Wunderlist'
+    }, {
+      'url': 'go.xero.com',
+      'app': 'Xero'
     }, {
       'url': 'myjetbrains.com',
       'app': 'YouTrack'
@@ -147,6 +201,9 @@ var TogglButton = {
               case "Asana":
                 chrome.tabs.executeScript({file: 'scripts/content/asana.js'});
                 break;
+              case "Axosoft":
+                chrome.tabs.executeScript({file: 'scripts/content/axosoft.js'});
+                break;
               case "Basecamp":
                 chrome.tabs.executeScript({file: 'scripts/content/basecamp.js'});
                 break;
@@ -156,14 +213,38 @@ var TogglButton = {
               case "Capsule":
                 chrome.tabs.executeScript({file: 'scripts/content/capsule.js'});
                 break;
+              case "Drupal":
+                chrome.tabs.executeScript({file: 'scripts/content/drupalorg.js'});
+                break;
+              case "esa":
+                chrome.tabs.executeScript({file: 'scripts/content/esa.js'});
+                break;
+              case "Flow":
+                chrome.tabs.executeScript({file: 'scripts/content/getflow.js'});
+                break;
+              case "Gemini":
+                chrome.tabs.executeScript({file: 'scripts/content/gemini.js'});
+                break;
               case "GitHub":
                 chrome.tabs.executeScript({file: 'scripts/content/github.js'});
                 break;
               case "GitLab":
                 chrome.tabs.executeScript({file: 'scripts/content/gitlab.js'});
                 break;
-              case "GoogleDrive":
+              case "GoogleCalendar":
+                chrome.tabs.executeScript({file: 'scripts/content/google-calendar.js'});
+                break;
+              case "GoogleDocs":
                 chrome.tabs.executeScript({file: 'scripts/content/google-docs.js'});
+                break;
+              case "GoogleMail":
+                chrome.tabs.executeScript({file: 'scripts/content/google-mail.js'});
+                break;
+              case "HabitRPG":
+                chrome.tabs.executeScript({file: 'scripts/content/habitrpg.js'});
+                break;
+              case "HelpScout":
+                chrome.tabs.executeScript({file: 'scripts/content/helpscour.js'});
                 break;
               case "JIRA":
                 chrome.tabs.executeScript({file: 'scripts/content/jira.js'});
@@ -186,8 +267,20 @@ var TogglButton = {
               case "Sifter":
                 chrome.tabs.executeScript({file: 'scripts/content/sifterapp.js'});
                 break;
+              case "Sprintly":
+                chrome.tabs.executeScript({file: 'scripts/content/sprintly.js'});
+                break;
+              case "Taiga":
+                chrome.tabs.executeScript({file: 'scripts/content/taiga.js'});
+                break;
               case "Teamweek":
-                chrome.tabs.executeScript({file: 'scripts/content/teamweek.js'});
+                chrome.tabs.executeScript({file: 'scripts/content/teamweek_new.js'});
+                break;
+              case "Teamwork":
+                chrome.tabs.executeScript({file: 'scripts/content/teamworkpm.js'});
+                break;
+              case "TestRail":
+                chrome.tabs.executeScript({file: 'scripts/content/testrail.js'});
                 break;
               case "Todoist":
                 chrome.tabs.executeScript({file: 'scripts/content/todoist.js'});
@@ -206,6 +299,9 @@ var TogglButton = {
                 break;
               case "Wunderlist":
                 chrome.tabs.executeScript({file: 'scripts/content/wunderlist.js'});
+                break;
+              case "Xero":
+                chrome.tabs.executeScript({file: 'scripts/content/xero.js'});
                 break;
               case "YouTrack":
                 chrome.tabs.executeScript({file: 'scripts/content/youtrack.js'});
