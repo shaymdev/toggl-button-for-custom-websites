@@ -165,6 +165,9 @@ var TogglButton = {
               case "GoogleDrive":
                 chrome.tabs.executeScript({file: 'scripts/content/google-docs.js'});
                 break;
+              case "JIRA":
+                chrome.tabs.executeScript({file: 'scripts/content/jira.js'});
+                break;
               case "PivotalTracker":
                 chrome.tabs.executeScript({file: 'scripts/content/pivotal.js'});
                 break;
@@ -721,7 +724,7 @@ var TogglButton = {
       TogglButton.$socket = null;
     }
   },
-  
+
   setCustomWebsites: function (customWebsites) {
     localStorage.setItem('customWebsites', JSON.stringify(customWebsites));
     TogglButton.$customWebsites = customWebsites;

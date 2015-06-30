@@ -118,6 +118,7 @@ var Settings = {
         '<option value="GitHub">GitHub</option>' +
         '<option value="GitLab">GitLab</option>' +
         '<option value="GoogleDrive">Google Drive</option>' +
+        '<option value="JIRA">JIRA</option>' +
         '<option value="PivotalTracker">Pivotal Tracker</option>' +
         '<option value="Podio">Podio</option>' +
         '<option value="Producteev">Producteev</option>' +
