@@ -140,6 +140,7 @@ var Settings = {
         '<option value="Teamwork">Teamwork</option>' +
         '<option value="TestRail">TestRail</option>' +
         '<option value="Todoist">Todoist</option>' +
+        '<option value="Toodledo">Toodledo</option>' +
         '<option value="Trac">Trac</option>' +
         '<option value="Trello">Trello</option>' +
         '<option value="Unfuddle">Unfuddle</option>' +

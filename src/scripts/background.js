@@ -145,6 +145,9 @@ var TogglButton = {
       'url': 'todoist.com',
       'app': 'Todoist'
     }, {
+      'url': 'toodledo.com',
+      'app': 'Toodledo'
+    }, {
       'url': 'bugs.jquery.com',
       'app': 'Trac'
     }, {
@@ -284,6 +287,9 @@ var TogglButton = {
                 break;
               case "Todoist":
                 chrome.tabs.executeScript({file: 'scripts/content/todoist.js'});
+                break;
+              case "Toodledo":
+                chrome.tabs.executeScript({file: 'scripts/content/toodledo.js'});
                 break;
               case "Trac":
                 chrome.tabs.executeScript({file: 'scripts/content/trac.js'});

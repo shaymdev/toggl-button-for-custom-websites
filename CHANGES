@@ -3,6 +3,8 @@ NOTE:
   - Releases with four-part version numbers contain changes that only apply to the Toggl Button for Custom Websites extension.
 
 
+[0.6.8.2]
+- Added Toodledo to list of custom apps
 [0.6.8.1]
 - Added Axosoft to list of custom apps
 - Added Drupal to list of custom apps
