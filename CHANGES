@@ -3,6 +3,8 @@ NOTE:
   - Releases with four-part version numbers contain changes that only apply to the Toggl Button for Custom Websites extension.
 
 
+[0.6.8.1]
+- Added JIRA to list of custom apps
 [0.6.8]
 - Fixed Google Calendar description issue
 - Fixed http and https url support
