@@ -3,6 +3,17 @@ NOTE:
   - Releases with four-part version numbers contain changes that only apply to the Toggl Button for Custom Websites extension.
 
 
+[0.6.9]
+- Added support for Breeze
+- Added support for BamBam
+- Added support for Wrike
+- Added support for Bugzilla
+- Added support for GQueue
+- Fixed issues with Taiga.io ui
+- Fixed issues with Teamweek ui
+- Show running entry description in running popup item tooltip
+- Fixed project name issue in github
+- Added Worksection .net and .eu domains
 [0.6.8.2]
 - Added Toodledo to list of custom apps
 [0.6.8.1]

@@ -52,11 +52,20 @@ var TogglButton = {
       'url': 'axosoft.com',
       'app': 'Axosoft'
     }, {
+      'url': 'dobambam.com',
+      'app': 'BamBam'
+    }, {
       'url': 'basecamp.com',
       'app': 'Basecamp'
     }, {
       'url': 'bitbucket.org',
       'app': 'Bitbucket'
+    }, {
+      'url': 'app.breeze.pm',
+      'app': 'Breeze'
+    }, {
+      'url': 'bugzilla.mozilla.org',
+      'app': 'Bugzilla'
     }, {
       'url': 'capsulecrm.com',
       'app': 'Capsule'
@@ -87,6 +96,9 @@ var TogglButton = {
     }, {
       'url': 'mail.google.com',
       'app': 'GoogleMail'
+    }, {
+      'url': 'www.gqueues.com',
+      'app': 'GQueue'
     }, {
       'url': 'habitrpg.com',
       'app': 'HabitRPG'
@@ -169,6 +181,9 @@ var TogglButton = {
       'url': 'worksection.com',
       'app': 'Worksection'
     }, {
+      'url': 'wrike.com',
+      'app': 'Wrike'
+    }, {
       'url': 'wunderlist.com',
       'app': 'Wunderlist'
     }, {
@@ -207,11 +222,20 @@ var TogglButton = {
               case "Axosoft":
                 chrome.tabs.executeScript({file: 'scripts/content/axosoft.js'});
                 break;
+              case "BamBam":
+                chrome.tabs.executeScript({file: 'scripts/content/dobambam.js'});
+                break;
               case "Basecamp":
                 chrome.tabs.executeScript({file: 'scripts/content/basecamp.js'});
                 break;
               case "Bitbucket":
                 chrome.tabs.executeScript({file: 'scripts/content/bitbucket.js'});
+                break;
+              case "Breeze":
+                chrome.tabs.executeScript({file: 'scripts/content/breeze.js'});
+                break;
+              case "Bugzilla":
+                chrome.tabs.executeScript({file: 'scripts/content/bugzilla.js'});
                 break;
               case "Capsule":
                 chrome.tabs.executeScript({file: 'scripts/content/capsule.js'});
@@ -242,6 +266,9 @@ var TogglButton = {
                 break;
               case "GoogleMail":
                 chrome.tabs.executeScript({file: 'scripts/content/google-mail.js'});
+                break;
+              case "GQueue":
+                chrome.tabs.executeScript({file: 'scripts/content/gqueues.js'});
                 break;
               case "HabitRPG":
                 chrome.tabs.executeScript({file: 'scripts/content/habitrpg.js'});
@@ -305,6 +332,9 @@ var TogglButton = {
                 break;
               case "Wunderlist":
                 chrome.tabs.executeScript({file: 'scripts/content/wunderlist.js'});
+                break;
+              case "Wrike":
+                chrome.tabs.executeScript({file: 'scripts/content/wrike.js'});
                 break;
               case "Xero":
                 chrome.tabs.executeScript({file: 'scripts/content/xero.js'});
