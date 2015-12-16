@@ -3,8 +3,11 @@
 'use strict';
 
 togglbutton.render('input[name=id]', {}, function (elem) {
+  debugger;
   var link,
-    description = elem.value;
+    selectorForSummary = '#short_desc_nonedit_display',
+    summary = document.querySelector(selectorForSummary),
+    description = elem.value + " - " + summary.textContent;
 
   link = togglbutton.createTimerLink({
     className: 'bugzilla',
