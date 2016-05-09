@@ -3,11 +3,11 @@
 'use strict';
 
 togglbutton.render('input[name=id]', {}, function (elem) {
-  debugger;
   var link,
     selectorForSummary = '#short_desc_nonedit_display',
     summary = document.querySelector(selectorForSummary),
-    description = elem.value + " - " + summary.textContent;
+    description = elem.value + " - " + summary.textContent,
+	targetElement;
 
   link = togglbutton.createTimerLink({
     className: 'bugzilla',
@@ -15,7 +15,8 @@ togglbutton.render('input[name=id]', {}, function (elem) {
     projectName: 'Bugs'
   });
 
-  if ($('#summary_alias_container') !== undefined) {
-    $('#summary_alias_container').appendChild(link);
+  targetElement = $('#summary_alias_container') || $('#summary_container');
+  if ( targetElement !== null ) {
+    targetElement.appendChild(link);
   }
 });
